@@ -10,12 +10,16 @@ import Feedback from './components/Feedback';
 class App extends React.Component {
 
     state = {
-        isGameOn: false
+        isGameOn: false,
+        winner: null,
+        isDraw: false
     };
 
-    handleGameUpdate = (flag) => {
+    handleGameUpdate = (flag, winner, isDraw) => {
         this.setState({
-            isGameOn: flag
+            isGameOn: flag,
+            winner: winner ? winner : this.state.winner,
+            isDraw: isDraw ? isDraw : this.state.isDraw
         });
     }
 
@@ -30,11 +34,11 @@ class App extends React.Component {
                         <Info isGameOn={this.state.isGameOn} updateGame={this.handleGameUpdate} />
                     </Col>
                     <Col md={{ span: 4, offset: 4 }}>
-                        <Board isGameOn={this.state.isGameOn} />
+                        <Board isGameOn={this.state.isGameOn} updateGame={this.handleGameUpdate} />
                     </Col>
                 </Row>
                 <Row className="justify-content-center mt-4">
-                    <Feedback />
+                    <Feedback isGameOn={this.state.isGameOn} winner={this.state.winner} draw={this.state.isDraw} />
                 </Row>
             </Container>
         );

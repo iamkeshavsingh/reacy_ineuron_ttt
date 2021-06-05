@@ -1,29 +1,14 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 
 
 
-class Square extends React.Component {
+function Square({ placeholder, click }) {
 
-    state = {
-        placeholder: null
-    };
-
-    handleClick = () => {
-        if (this.props.isGameOn) {
-            this.setState({
-                placeholder: 'X'
-            });
-        }
-    }
-
-    render() {
-        return (
-            <Col onClick={this.handleClick} className="d-flex justify-content-center align-items-center">
-                {this.state.placeholder}
-            </Col>
-        );
-    }
+    return (
+        <div onClick={click} className="App_board_col">
+            {placeholder}
+        </div>
+    );
 }
 
 
