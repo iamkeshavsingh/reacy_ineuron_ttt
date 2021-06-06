@@ -15,8 +15,9 @@ function Info({ updateGame, isGameOn }) {
     function handleSubmit(e) {
         e.preventDefault();
         var formData = new FormData(e.target);
-        console.log(getFormData(formData));
-        updateGame(true);
+        var playersInfo = getFormData(formData);
+        updateGame(true, undefined, undefined, playersInfo);
+        e.target.reset();
     }
 
     return (
